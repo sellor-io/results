@@ -109,27 +109,27 @@ public class ResultMessage
         return new ResultMessage(message, ResultMessageSeverity.Information, messagePath);
     }
 
-    public static ResultMessage Critical<TContext>(IList<ResultMessagePathItem> path, string message)
+    public static ResultMessage Critical(IList<ResultMessagePathItem> path, string message)
     {
         return new ResultMessage(message, ResultMessageSeverity.Critical, path.ToImmutableArray());
     }
 
-    public static ResultMessage Error<TContext>(IList<ResultMessagePathItem> path, string message)
+    public static ResultMessage Error(IList<ResultMessagePathItem> path, string message)
     {
         return new ResultMessage(message, ResultMessageSeverity.Error, path.ToImmutableArray());
     }
 
-    public static ResultMessage NotFound<TContext>(IList<ResultMessagePathItem> path, string objectName)
+    public static ResultMessage NotFound(IList<ResultMessagePathItem> path, string objectName)
     {
         return new ResultMessage($"{objectName} not found.", ResultMessageSeverity.NotFound, path.ToImmutableArray());
     }
 
-    public static ResultMessage Warning<TContext>(IList<ResultMessagePathItem> path, string message)
+    public static ResultMessage Warning(IList<ResultMessagePathItem> path, string message)
     {
         return new ResultMessage(message, ResultMessageSeverity.Warning, path.ToImmutableArray());
     }
 
-    public static ResultMessage Information<TContext>(IList<ResultMessagePathItem> path, string message)
+    public static ResultMessage Information(IList<ResultMessagePathItem> path, string message)
     {
         return new ResultMessage(message, ResultMessageSeverity.Information, path.ToImmutableArray());
     }
