@@ -7,9 +7,9 @@ using System.Reflection;
 
 namespace Sellorio.Results.Messages;
 
-internal static class ExpressionToPathHelper
+public static class ExpressionToPathHelper
 {
-    internal static ImmutableArray<ResultMessagePathItem> GetPath<TFrom, TTo>(Expression<Func<TFrom, TTo>> expression)
+    public static ImmutableArray<ResultMessagePathItem> GetPath<TFrom, TTo>(Expression<Func<TFrom, TTo>> expression)
     {
         var current = expression.Body;
         var result = new List<ResultMessagePathItem>();

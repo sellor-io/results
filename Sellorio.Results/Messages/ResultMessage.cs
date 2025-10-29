@@ -91,10 +91,10 @@ public class ResultMessage
         return new ResultMessage(message, ResultMessageSeverity.Error, messagePath);
     }
 
-    public static ResultMessage NotFound<TContext>(Expression<Func<TContext, object>> path)
+    public static ResultMessage NotFound<TContext>(Expression<Func<TContext, object>> path, string objectName)
     {
         var messagePath = ExpressionToPathHelper.GetPath(path);
-        return new ResultMessage("Not found.", ResultMessageSeverity.NotFound, messagePath);
+        return new ResultMessage($"{objectName} not found.", ResultMessageSeverity.NotFound, messagePath);
     }
 
     public static ResultMessage Warning<TContext>(Expression<Func<TContext, object>> path, string message)
@@ -107,5 +107,30 @@ public class ResultMessage
     {
         var messagePath = ExpressionToPathHelper.GetPath(path);
         return new ResultMessage(message, ResultMessageSeverity.Information, messagePath);
+    }
+
+    public static ResultMessage Critical<TContext>(IList<ResultMessagePathItem> path, string message)
+    {
+        return new ResultMessage(message, ResultMessageSeverity.Critical, path.ToImmutableArray());
+    }
+
+    public static ResultMessage Error<TContext>(IList<ResultMessagePathItem> path, string message)
+    {
+        return new ResultMessage(message, ResultMessageSeverity.Error, path.ToImmutableArray());
+    }
+
+    public static ResultMessage NotFound<TContext>(IList<ResultMessagePathItem> path, string objectName)
+    {
+        return new ResultMessage($"{objectName} not found.", ResultMessageSeverity.NotFound, path.ToImmutableArray());
+    }
+
+    public static ResultMessage Warning<TContext>(IList<ResultMessagePathItem> path, string message)
+    {
+        return new ResultMessage(message, ResultMessageSeverity.Warning, path.ToImmutableArray());
+    }
+
+    public static ResultMessage Information<TContext>(IList<ResultMessagePathItem> path, string message)
+    {
+        return new ResultMessage(message, ResultMessageSeverity.Information, path.ToImmutableArray());
     }
 }
